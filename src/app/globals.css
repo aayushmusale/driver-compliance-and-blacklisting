@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Red-white theme. Primary = #c61a09. Destructive is a deeper maroon so "blacklist" stays distinct from the brand red. */
+    --background: 0 0% 98%; --foreground: 0 0% 10%;
+    --card: 0 0% 100%; --card-foreground: 0 0% 10%;
+    --primary: 5 91% 41%; --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 94%; --secondary-foreground: 0 0% 10%;
+    --muted: 0 0% 96%; --muted-foreground: 0 0% 40%;
+    --accent: 5 70% 96%; --accent-foreground: 5 91% 30%;
+    --destructive: 0 63% 28%; --destructive-foreground: 0 0% 100%;
+    --success: 142 72% 29%; --success-soft: 141 84% 93%;
+    --warning: 28 90% 36%; --warning-soft: 48 96% 89%;
+    --border: 0 0% 90%; --input: 0 0% 84%; --ring: 5 91% 41%; --radius: 0.75rem;
+    --navy: 0 0% 12%;
+  }
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground antialiased; font-family: ui-sans-serif, "Segoe UI", Inter, system-ui, sans-serif; font-size: 14.5px; }
+  h1 { @apply text-2xl font-semibold tracking-tight mb-2; }
+  h2 { @apply text-base font-semibold tracking-tight mb-2; }
+  h3 { @apply text-sm font-semibold mb-1; }
+  a { @apply text-primary underline-offset-4 hover:underline; }
+  hr { @apply my-4 border-border; }
+}
+
+/* Existing page markup keeps its class names; they are styled here with shadcn tokens. */
+@layer components {
+  main { @apply mx-auto max-w-7xl px-6 py-6 animate-fade-up; }
+  .card { @apply rounded-xl border bg-card text-card-foreground shadow-sm p-5 mb-4; }
+  .grid { gap: 1rem; } .g4 { @apply grid-cols-2 lg:grid-cols-3 xl:grid-cols-6; } .g2 { @apply grid-cols-1 lg:grid-cols-2; }
+  .mut { @apply text-muted-foreground text-sm; }
+  .row { @apply flex flex-wrap items-center gap-2; }
+  .row input:not([type=checkbox]) { @apply w-auto; }
+  .timeline { @apply list-none p-0 space-y-2; }
+
+  table { @apply w-full text-sm; }
+  th { @apply h-9 px-3 text-left text-xs font-medium uppercase tracking-wide text-muted-foreground border-b; }
+  td { @apply px-3 py-2.5 border-b align-top; }
+  tbody tr { @apply transition-colors hover:bg-muted/60; }
+  tr.bl td { @apply bg-red-50/70; }
+
+  form.f { @apply grid gap-3; }
+  label { @apply grid gap-1.5 text-xs font-medium text-muted-foreground; }
+  input, select, textarea { @apply flex w-full rounded-md border border-input bg-card px-3 py-2 text-sm shadow-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40 focus-visible:border-ring; }
+  input[type=checkbox] { @apply h-4 w-4 p-0 accent-[hsl(var(--primary))] shadow-none; }
+  textarea { @apply min-h-[80px]; }
+  label.row { @apply flex items-center gap-2 text-sm font-normal text-foreground; }
+
+  button, .btn { @apply inline-flex items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40 disabled:opacity-50 no-underline hover:no-underline; }
+  button.ghost { @apply bg-card text-foreground border border-input shadow-sm hover:bg-accent; }
+  button.red, .btn.red { @apply bg-destructive text-destructive-foreground hover:bg-destructive/90; }
+  button.navy { @apply bg-[hsl(var(--navy))] text-white hover:bg-[hsl(var(--navy))]/90; }
+
+  .badge { @apply inline-flex items-center rounded-full border border-transparent px-2.5 py-0.5 text-xs font-semibold whitespace-nowrap; }
+  .b-VALID, .b-OK { @apply bg-success-soft text-success; }
+  .b-EXPIRING { @apply bg-warning-soft text-warning; }
+  .b-EXPIRED { @apply bg-red-100 text-red-700; }
+  .b-PENDING, .b-NEUTRAL { @apply bg-secondary text-slate-600; }
+  .b-BL { @apply bg-destructive text-destructive-foreground; }
+
+  .banner { @apply mb-4 rounded-xl border border-red-300 bg-red-50 p-4 text-red-900 shadow-sm; }
+  .banner b { @apply text-base; }
+  .msg { @apply mb-4 rounded-lg border px-4 py-2.5 text-sm font-medium; }
+  .msg.ok { @apply border-green-200 bg-success-soft text-success; }
+  .msg.err { @apply border-red-200 bg-red-50 text-red-700; }
+
+  .bar { @apply flex h-2.5 min-w-[140px] overflow-hidden rounded-full bg-secondary; }
+  .bar i { @apply block; }
+  .leg { @apply flex flex-wrap items-center gap-4 text-xs text-muted-foreground mb-3; }
+  .leg i { @apply inline-block h-2.5 w-2.5 rounded-full mr-1.5; }
+
+  .notif { @apply mb-2 rounded-lg border border-l-4 border-l-primary bg-card p-3 shadow-sm; }
+  .notif.unread { @apply bg-red-50/60; }
+  .notif.EXPIRED, .notif.BLACKLIST { @apply border-l-red-600; }
+  .notif.EXPIRING, .notif.CONCERN { @apply border-l-amber-500; }
+}

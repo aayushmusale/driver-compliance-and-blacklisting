@@ -1,0 +1,11 @@
+Sample License Data
+
+Authentication : clerk sign in|
+database : PostgreSQL with Prisma and private S3 storage[check the SQLite thing]
+
+OCR with PaddleOCR.
+
+
+ Okay so now what i want you to do is mentioned below: 
+I want you to give the DGM same level of authorities and access as the Senior Managers and the create a new admin which will be our super-admin who will have the complete access of this system; the audit trails, the admin settings only this super-admin can control. 
+I want some more functionality for the super-admin which i will have a detailed discussion with the team and will let you know but before that I want you to do the task written.
